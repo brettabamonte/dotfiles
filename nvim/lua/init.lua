@@ -3,6 +3,10 @@ vim.g.maplocalleader = " "
 
 vim.opt.mouse=""
 
+-- disable netrw at the very start of your init.lua so I can use other file nav plugin
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Import general configuration.
 require("config")
 
