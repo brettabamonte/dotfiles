@@ -16,21 +16,6 @@ return {
         },
     },
     {
-        "folke/which-key.nvim",
-        event = "VimEnter",
-        config = function()
-            require("which-key").setup()
-
-            require("which-key").register {
-                ["<Leader>c"] = { name = "Code", _ = "which_key_ignore" },
-                ["<Leader>d"] = { name = "Document", _ = "which_key_ignore" },
-                ["<Leader>r"] = { name = "Rename", _ = "which_key_ignore" },
-                ["<Leader>s"] = { name = "Search", _ = "which_key_ignore" },
-                ["<Leader>w"] = { name = "Workspace", _ = "which_key_ignore" },
-            }
-        end,
-    },
-    {
         "folke/todo-comments.nvim",
         event = "VimEnter",
         dependencies = { "nvim-lua/plenary.nvim" },
