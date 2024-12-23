@@ -1,22 +1,33 @@
+-- disable netrw at the very start of your init.lua so I can use other file nav plugin
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- Update vim leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Import general configuration.
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+ end
+end
+vim.opt.rtp:prepend(lazypath)
+
 require("config")
 
--- Install the lazy plugin manager and add it to the front of the runtime path.
-local lazy_install_path = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazy_install_path) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "--branch=stable",
-        "git@github.com:folke/lazy.nvim",
-        lazy_install_path,
-    })
-end
-vim.opt.runtimepath:prepend(lazy_install_path)
-
--- Configure lazy to install plugins from `./lua/plugins`.
-require("lazy").setup("plugins")
+---- Configure lazy to install plugins from `./lua/plugins`.
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+})
