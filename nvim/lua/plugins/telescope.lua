@@ -58,10 +58,7 @@ return {
             vim.keymap.set("n", "<Leader><Leader>", require("telescope.builtin").buffers, {
                 desc = "Search list of buffers"
             })
-            vim.keymap.set("n", "<Leader>gs", '<cmd>AdvancedGitSearch<CR>', {
-                desc = "Advanced git search"
-            })
-            vim.keymap.set("n", "<Leader>ff", require("telescope.builtin").lsp_references, {
+            vim.keymap.set("n", "<Leader>fr", require("telescope.builtin").lsp_references, {
                 desc = "Find references"
             })
 
