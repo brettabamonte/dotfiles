@@ -1,3 +1,4 @@
+initial-command = zsh -c ~/.config/ghostty/tmux-setup.sh
 theme = gruvbox-material
 font-family = "JetBrainsMonoNL Nerd Font Mono"
 font-size = 13
