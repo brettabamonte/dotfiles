@@ -22,6 +22,10 @@ else
     echo "Enter session you want to attach to: "
     read desired_session
     
+    if [[ desired_session -eq "" ]]; then
+        desired_session=0
+    fi
+
     foundSession=false
     for session in "${sessionNames[@]}"; do
         if [[ "$session" == "$desired_session" ]]; then
