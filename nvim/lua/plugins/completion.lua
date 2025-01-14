@@ -1,7 +1,6 @@
 return {
     {
         "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
         dependencies = {
             {
                 "L3MON4D3/LuaSnip",
@@ -24,6 +23,9 @@ return {
             luasnip.config.setup()
 
             cmp.setup({
+                completion = {
+                    completeopt = "menu,menuone,noinsert,noselect,preview"
+                },
                 window = {
                     completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
@@ -39,7 +41,7 @@ return {
                     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     ["<C-y>"] = cmp.mapping.confirm { select = true },
-                    ["<CR>"] = cmp.mapping.confirm { select = true },
+                    ["<CR>"] = cmp.mapping.confirm { select = false }, -- disables auto selecting the 1st completion suggestion even if the luasnip isn't focused
                     ["<C-Space>"] = cmp.mapping.complete {},
                     ["<C-l>"] = cmp.mapping(function()
                         if luasnip.expand_or_locally_jumpable() then
@@ -49,6 +51,13 @@ return {
                     ["<C-h>"] = cmp.mapping(function()
                         if luasnip.locally_jumpable(-1) then
                             luasnip.jump(-1)
+                        end
+                    end, { "i", "s" }),
+                    ["<Tab>"] = cmp.mapping(function(fallback) -- Lets us tab through luansip
+                        if cmp.visible() then
+                          cmp.select_next_item()
+                        else
+                          fallback()
                         end
                     end, { "i", "s" }),
                 },
