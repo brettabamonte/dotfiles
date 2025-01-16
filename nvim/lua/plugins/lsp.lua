@@ -105,7 +105,7 @@ return {
                         },
                     },
                 },
-                rust_analyzer = {},
+                basedpyright = {},
             }
 
             -- Mason is used to install LSP tooling.
