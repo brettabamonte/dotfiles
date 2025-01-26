@@ -112,6 +112,7 @@ return {
                       linters = { 'standard' },
                     },
                 },
+                jdtls = {},
             }
 
             -- Mason is used to install LSP tooling.
