@@ -32,11 +32,6 @@ return {
                         desc = "Go to implementation",
                     })
 
-                    vim.keymap.set("n", "<Leader>D", require("telescope.builtin").lsp_type_definitions, {
-                        buffer = event.buf,
-                        desc = "Go to type definition",
-                    })
-
                     vim.keymap.set("n", "<Leader>ds", require("telescope.builtin").lsp_document_symbols, {
                         buffer = event.buf,
                         desc = "Search document symbols",
@@ -65,11 +60,6 @@ return {
                     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {
                         buffer = event.buf,
                         desc = "Go to declaration",
-                    })
-
-                    vim.keymap.set("n", "<Leader>cf", vim.lsp.buf.format, {
-                        buffer = event.buf,
-                        desc = "Format current buffer",
                     })
 
                     local lsp_client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -112,7 +102,6 @@ return {
                       linters = { 'standard' },
                     },
                 },
-                jdtls = {},
             }
 
             -- Mason is used to install LSP tooling.
