@@ -95,13 +95,14 @@ return {
                         },
                     },
                 },
-                basedpyright = {},
                 ruby_lsp = {
                     init_options = {
                       formatter = 'standard',
                       linters = { 'standard' },
                     },
                 },
+                ts_ls = {},
+                ruff = {},
             }
 
             -- Mason is used to install LSP tooling.
